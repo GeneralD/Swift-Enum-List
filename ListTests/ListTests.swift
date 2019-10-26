@@ -22,6 +22,11 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(l3.count, 6)
 	}
 	
+	func testInitFuncWithManyElement() {
+		let l3 = List(from: 0..<50000)
+		XCTAssertEqual(l3.count, 50000)
+	}
+	
     func testL1() {
 		XCTAssertEqual(l1[0], 1)
 		XCTAssertEqual(l1[5], 8)
@@ -52,8 +57,31 @@ class ListTests: XCTestCase {
 	func testReverse() {
 		let a = [111, 222, 333, 555, 789]
 		let r1 = List(from: a).reversed()
-		let r2 = List(from: a.reversed()).map { $0 }
+		let r2 = List(from: a.reversed())
 		XCTAssertEqual(r1, r2)
+	}
+	
+	func testDropFirst() {
+		let d = l1.dropFirst()
+		XCTAssertNotEqual(d, l1)
+		let e = d.dropFirst()
+		XCTAssertEqual(e.first, 2)
+		let emp = e.dropFirst(100)
+		XCTAssertEqual(emp, .empty)
+	}
+	
+	func testPlus() {
+		XCTAssertEqual(List.empty + List(5, 6), List(5, 6))
+		XCTAssertEqual(List(5, 6) + List.empty, List(5, 6))
+		XCTAssertEqual(List(0) + l1 + List(13, 21) + List(34), List(0, 1, 1, 2, 3, 5, 8, 13, 21, 34))
+	}
+	
+	func testMap() {
+		XCTAssertEqual(l1.map { $0 * $0 }, List(1, 1, 4, 9, 25, 64))
+	}
+	
+	func testFlatMap() {
+		XCTAssertEqual(l1.flatMap { List($0, $0 + 1) }, List(1, 2, 1, 2, 2, 3, 3, 4, 5, 6, 8, 9))
 	}
 	
     func testPerformanceInitFunc1() {
