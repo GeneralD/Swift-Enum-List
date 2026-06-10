@@ -2,7 +2,7 @@
 
 ![swift](https://img.shields.io/badge/swift-5.0-orange) ![platform](https://img.shields.io/badge/platform-macOS%2010.15+-blue) ![tests](https://img.shields.io/badge/tests-XCTest-green) ![status](https://img.shields.io/badge/status-legacy%20sample-lightgrey)
 
-![Swift-Enum-List hero banner](assets/hero.png)
+![Swift-Enum-List hero banner](assets/hero.jpg)
 
 A functional, immutable **linked list (cons list)** implemented as a Swift `indirect enum` — a small educational framework showing how a classic Lisp-style list maps onto Swift's type system.
 
